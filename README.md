@@ -1,14 +1,14 @@
 ## How to Run
 1. clone the repository:
 ```
-git clone https://github.com/ali-hv/filmchi.git
+git clone https://github.com/ali-hv/upcode.git
 ```
-2. create the dbdata directory in the volumes direcotory:
+2. install the requirements
 ```
-cd volumes
-mkdir dbdata
+pip install -r requirements.txt
 ```
-3. build and run the project:
+3. run the project:
 ```
-docker-compose up --build
+cd src
+python manage.py runserver
 ```
