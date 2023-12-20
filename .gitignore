@@ -8,8 +8,8 @@ media/*
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,python
 
 ### My ignores ###
-.venv
-venv
+.venv/
+venv/
 .env
 env
 
