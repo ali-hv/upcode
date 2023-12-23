@@ -1,0 +1,51 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <div class="container">
+    <a href="#"><img class="navbar-brand" src={% static "base/logos/logo.png" %}></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item active">
+        <a class="nav-link" href="#">کلاس ها</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">بانک سوالات</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">مسابقات</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">کاریابی</a>
+        </li>
+      </ul>
+    
+    {% if not user.is_authenticated %}
+      <a href="#"><button class="enter-companies-section">ورود به بخش شرکت ها &nbsp;</button></a>
+      <a href="#"><button class="login-button">ورود</button></a>
+      <a href="#"><button class="signup-button">عضویت</button></a>
+    </div>
+    {% else %}
+    </div>
+    <button class="notifications" style="background-image: url({% static 'base/icons/notif-bell.jpg' %}"></button>
+    <div class="dropdown">
+        <button class="dropbtn" style="background-image: url({% static 'base/icons/avatar.png' %});"></button>
+        <div class="dropdown-content">
+            <img src="{% static 'base/icons/avatar.png' %}" style="max-width: 60px; margin-left: 15px; margin-bottom: 10px;">
+            <span>علی حسین وردی</span>
+            <a href="">پروفایل شما</a>
+            <a href="">تنظیمات</a>
+            <hr>
+            <a href="">رویداد های شما</a>
+            <a href="">کالج های شما</a>
+            <a href="">کاریابی شما</a>
+            <hr>
+            <a href="">به سمت بخش شرکت ها</a>
+            <a href="" class="logout">خروج</a>
+        </div>
+    </div>
+    {% endif %}
+  </div>
+</nav>

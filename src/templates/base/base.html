@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock title%}</title>
+  {% include 'base/base_ref.html' %}
+</head>
+
+<body>
+  {% include 'base/header.html' %}
+  {% block content %}{%  endblock content %}
+  {% include 'base/footer.html' %}
+</body>
