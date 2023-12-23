@@ -1,1 +1,14 @@
-<h2>Here we are!</h2>
+{% extends 'base/base.html' %}
+
+{% block title %}آپ کد{% endblock %}
+
+{% block content %}
+  <section class="py-5 head">
+    <div class="container">
+      <h1 class="fw-light">جامعه توسعه‌ دهندگان ایران</h1>
+      <p class="lead">فضایی برای یادگیری، رشد حرفه‌ای و همگرایی توسعه‌ دهندگان</p>
+      <button class="register">عضویت</button>
+      <p class="find-developer">به دنبال جذب توسعه‌ دهنده هستید؟ <a href="#">بیشتر بخوانید</a></p>
+    </div>
+  </section>
+{%  endblock content %}
