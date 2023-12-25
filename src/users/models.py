@@ -1,22 +1,19 @@
 from django.core.validators import MinLengthValidator
 from django.contrib.auth.models import AbstractUser
-from django.templatetags.static import static
 from django.db import models
 
 
 class User(AbstractUser):
+    first_name = None
+    last_name = None
+
     phone_number = models.CharField(
         max_length=11,
-        validators=[
-            MinLengthValidator(11, "Phone Number must contain 11 characters")
-        ],
+        validators=[MinLengthValidator(11, "Phone Number must contain 11 characters")],
     )
-    avatar = models.ImageField(upload_to="avatars/", blank=True)
 
-    def get_avatar_url(self):
-        if self.avatar:
-            return self.avatar.url
-        return static("static/icons/default-avatar.png")
+    def __str__(self):
+        return self.username
 
     def get_full_name(self):
         if self.first_name or self.last_name:
