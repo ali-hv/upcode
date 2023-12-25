@@ -13,6 +13,12 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=255)
     avatar = models.ImageField(upload_to="avatars/", blank=True)
 
+    def __str__(self):
+        return self.user.username
+
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
     def get_avatar_url(self):
         if self.avatar:
             return self.avatar.url
