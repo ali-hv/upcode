@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'profiles.apps.ProfilesConfig',
     'problemset.apps.ProblemsetConfig',
-    
+
 ]
 
 MIDDLEWARE = [
