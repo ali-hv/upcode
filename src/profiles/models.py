@@ -9,15 +9,17 @@ class Profile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="profile"
     )
-    first_name = models.CharField(max_length=255, blank=True, null=True)
-    last_name = models.CharField(max_length=255, blank=True, null=True)
+    first_name = models.CharField(max_length=255, blank=True)
+    last_name = models.CharField(max_length=255, blank=True)
     avatar = models.ImageField(upload_to="avatars/", blank=True)
 
     def __str__(self):
         return self.user.username
 
     def get_full_name(self):
-        return f"{self.first_name} {self.last_name}"
+        if self.first_name or self.last_name:
+            return f"{self.first_name} {self.last_name}"
+        return self.user.username
 
     def get_avatar_url(self):
         if self.avatar:
