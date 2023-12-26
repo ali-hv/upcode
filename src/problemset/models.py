@@ -7,9 +7,15 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = "Categories"
 
+    def __str__(self):
+        return self.name
+
 
 class Language(models.Model):
     name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
 
 
 class Problem(models.Model):
@@ -21,3 +27,6 @@ class Problem(models.Model):
     memory_limit = models.PositiveIntegerField()
     test_cases = models.FileField(upload_to="test_cases/")
     # contest = models.ForeignKey(Contest, blank=True)
+
+    def __str__(self):
+        return self.title
