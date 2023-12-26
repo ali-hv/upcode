@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'users.apps.UsersConfig',
     'profiles.apps.ProfilesConfig',
+    'contests.apps.ContestsConfig',
     'problemset.apps.ProblemsetConfig',
 
 ]
