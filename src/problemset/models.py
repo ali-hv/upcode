@@ -1,5 +1,7 @@
 from django.db import models
 
+from contests.models import Contest
+
 
 class Category(models.Model):
     name = models.CharField(max_length=30)
@@ -26,7 +28,7 @@ class Problem(models.Model):
     time_limit = models.PositiveIntegerField()
     memory_limit = models.PositiveIntegerField()
     test_cases = models.FileField(upload_to="test_cases/")
-    # contest = models.ForeignKey(Contest, blank=True)
+    contest = models.ForeignKey(Contest, blank=True, null=True, on_delete=models.PROTECT, related_name="problems")
 
     def __str__(self):
         return self.title
