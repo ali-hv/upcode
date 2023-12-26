@@ -1,8 +1,8 @@
 dbdata
 
 ### Keep media dirs but not the files in there ###
-media/*
-!media/.gitkeep 
+media/
+media
 
 # Created by https://www.toptal.com/developers/gitignore/api/django,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,python
