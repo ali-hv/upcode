@@ -2,7 +2,12 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib import admin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from profiles.models import Profile
 from .models import User
+
+
+class UserProfileInline(admin.StackedInline):
+    model = Profile
 
 
 @admin.register(User)
@@ -10,6 +15,7 @@ class UserAdmin(BaseUserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = User
+    inlines = [UserProfileInline]
     list_display = (
         "username",
         "email",
