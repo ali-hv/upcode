@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'users.apps.UsersConfig',
     'profiles.apps.ProfilesConfig',
+    'problemset.apps.ProblemsetConfig',
+    
 ]
 
 MIDDLEWARE = [
