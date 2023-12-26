@@ -22,4 +22,4 @@ class Profile(models.Model):
     def get_avatar_url(self):
         if self.avatar:
             return self.avatar.url
-        return static("home/images/icons/default-avatar.png")
+        return static("base/icons/default-avatar.png")
