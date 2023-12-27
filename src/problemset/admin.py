@@ -5,7 +5,7 @@ from .models import Problem, Tag, Language
 
 @admin.register(Problem)
 class ProblemAdmin(admin.ModelAdmin):
-    list_display = ("title",)
+    list_display = ("title", "level", "contest", )
     search_fields = (
         "categories",
         "languages",
