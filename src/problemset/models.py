@@ -3,11 +3,8 @@ from django.db import models
 from contests.models import Contest
 
 
-class Category(models.Model):
+class Tag(models.Model):
     name = models.CharField(max_length=30)
-
-    class Meta:
-        verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.name
@@ -23,7 +20,7 @@ class Language(models.Model):
 class Problem(models.Model):
     title = models.CharField(max_length=255)
     detail = models.TextField()
-    categories = models.ManyToManyField(Category, related_name="problems")
+    tags = models.ManyToManyField(Tag, related_name="problems")
     languages = models.ManyToManyField(Language, related_name="problems")
     time_limit = models.PositiveIntegerField()
     memory_limit = models.PositiveIntegerField()
