@@ -6,7 +6,7 @@ from .models import Contest
 @admin.register(Contest)
 class ContestAdmin(admin.ModelAdmin):
     list_display = (
-        "title",
+        "name",
         "start_time",
         "is_contest_active",
         "is_registration_open",
