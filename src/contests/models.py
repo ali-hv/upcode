@@ -6,7 +6,7 @@ User = settings.AUTH_USER_MODEL
 
 
 class Contest(models.Model):
-    title = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     detail = models.TextField()
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
@@ -18,7 +18,7 @@ class Contest(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return self.name
 
     def is_registration_open(self):
         now = timezone.now()
