@@ -47,11 +47,25 @@
             </div>
 
             <div class="pagination">
-                <a href="#"><i class="bi bi-arrow-right-short"></i></a>
-                <a href="#" class="active">١</a>
-                <a href="#">٢</a>
-                <a href="#">٣</a>
-                <a href="#"><i class="bi bi-arrow-left-short"></i></a>
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}"><i class="bi bi-arrow-right-short"></i></a>
+                {% else %}
+                    <i class="bi bi-arrow-right-short" style="opacity: 50%"></i>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a href="#" class="active">{{ num }}</a>
+                    {% else %}
+                        <a href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}"><i class="bi bi-arrow-left-short"></i></a>
+                {% else %}
+                    <i class="bi bi-arrow-left-short" style="opacity: 50%"></i>
+                {% endif %}
             </div>
         </div>
 

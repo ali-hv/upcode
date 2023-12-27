@@ -9,6 +9,7 @@ class Problemset(ListView):
     queryset = model.objects.all()
     context_object_name = "problemset"
     template_name = "problemset/problemset.html"
+    paginate_by = 15
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
