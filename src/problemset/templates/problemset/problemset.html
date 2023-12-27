@@ -1,0 +1,106 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}بانک سوالات{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'problemset/css/style.css' %}">
+
+<div class="main-container">
+    <div class="container" dir="ltr">
+        <div class="table-container" dir="rtl">
+            <div class="search-box">
+                <i class="bi bi-search"></i>
+                <input type="text" placeholder="جستجوی نام سوال ...">
+            </div>
+
+            <button class="filter-toggle-button" onclick="toggleFilterSection()">جستجوی پیشرفته</button>
+
+            <div class="table-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>نام سوال</th>
+                            <th>تعداد حل</th>
+                            <th>سختی</th>
+                            <th>دسته بندی</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="bi bi-check2-circle"></i></td>
+                            <td class="title"><a href="#">سوال یک</a><br><span>مسابقه یک</span></td>
+                            <td style="font-size: 14px; color: #7b7b7b;">24 از 52</td>
+                            <td style="color: rgb(255, 208, 0);">متوسط</td>
+                            <td class="tags">
+                                <a href="#">حریصانه</a>
+                                <a href="#">ساختار داده</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <a href="#"><i class="bi bi-arrow-right-short"></i></a>
+                <a href="#" class="active">١</a>
+                <a href="#">٢</a>
+                <a href="#">٣</a>
+                <a href="#"><i class="bi bi-arrow-left-short"></i></a>
+            </div>
+        </div>
+
+        <div class="filter-section" id="filterSection" dir="rtl">
+            <div class="status">
+                <label class="title">وضعیت حل</label>
+                <hr aria-orientation="horizontal">
+                <input type="checkbox" id="full-solved" name="full-solved" value="Bike">
+                <label for="full-solved"> حل کامل</label><br>
+                <input type="checkbox" id="half-solved" name="half-solved" value="Car">
+                <label for="half-solved"> حل ناتمام</label><br>
+                <input type="checkbox" id="to-try" name="to-try" value="Car">
+                <label for="to-try"> بدون تلاش</label><br>
+            </div>
+
+            <div class="status">
+                <label class="title">سختی</label>
+                <hr aria-orientation="horizontal">
+                <input type="checkbox" id="simple" name="simple" value="Bike">
+                <label for="simple"> ساده</label><br>
+                <input type="checkbox" id="intermediate" name="intermediate" value="Car">
+                <label for="intermediate"> متوسط</label><br>
+                <input type="checkbox" id="hard" name="hard" value="Car">
+                <label for="hard"> سخت</label><br>
+            </div>
+
+            <div class="status">
+                <label class="title">برچسب ها</label>
+                <hr aria-orientation="horizontal">
+                <div style="OVERFLOW-Y:scroll; HEIGHT:250px">
+                    <input type="checkbox" id="python" name="python" value="Bike">
+                    <label for="python"> Python</label><br>
+                </div>
+            </div>
+
+            <div class="status">
+                <label class="title">مسابقه ها</label>
+                <hr aria-orientation="horizontal">
+                <div style="OVERFLOW-Y:scroll; HEIGHT:250px">
+                    <input type="checkbox" id="codecup" name="codecup" value="Bike">
+                    <label for="codecup"> مسابقه یک</label><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleFilterSection() {
+        var filterSection = document.getElementById('filterSection');
+        filterSection.style.display = (filterSection.style.display === 'none' || filterSection.style.display === '') ? 'block' : 'none';
+    }
+</script>
+
+{% endblock content %}
