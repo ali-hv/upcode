@@ -29,16 +29,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><i class="bi bi-check2-circle"></i></td>
-                            <td class="title"><a href="#">سوال یک</a><br><span>مسابقه یک</span></td>
-                            <td style="font-size: 14px; color: #7b7b7b;">24 از 52</td>
-                            <td style="color: rgb(255, 208, 0);">متوسط</td>
-                            <td class="tags">
-                                <a href="#">حریصانه</a>
-                                <a href="#">ساختار داده</a>
-                            </td>
-                        </tr>
+                        {% for problem in problemset %}
+                            <tr>
+                                <td><i class="bi bi-check2-circle"></i></td>
+                                <td class="title"><a href="#">{{ problem.title }}</a><br><span>{{ problem.contest.name }}</span></td>
+                                <td style="font-size: 14px; color: #7b7b7b;">24 از 52</td>
+                                <td style="color: rgb(255, 208, 0);">متوسط</td>
+                                <td class="tags">
+                                    {% for tag in problem.tags.all %}
+                                        <a href="#">{{ tag.name }}</a>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -79,8 +82,10 @@
                 <label class="title">برچسب ها</label>
                 <hr aria-orientation="horizontal">
                 <div style="OVERFLOW-Y:scroll; HEIGHT:250px">
-                    <input type="checkbox" id="python" name="python" value="Bike">
-                    <label for="python"> Python</label><br>
+                    {% for tag in tags %}
+                        <input type="checkbox" id="{{ tag.name }}" name="{{ tag.name }}">
+                        <label for="{{ tag.name }}"> {{ tag.name }}</label><br>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -88,8 +93,10 @@
                 <label class="title">مسابقه ها</label>
                 <hr aria-orientation="horizontal">
                 <div style="OVERFLOW-Y:scroll; HEIGHT:250px">
-                    <input type="checkbox" id="codecup" name="codecup" value="Bike">
-                    <label for="codecup"> مسابقه یک</label><br>
+                    {% for contest in contests %}
+                        <input type="checkbox" id="{{ contest.name }}" name="{{ contest.name }}">
+                        <label for="{{ contest.name }}"> {{ contest.name }}</label><br>
+                    {% endfor %}
                 </div>
             </div>
         </div>
