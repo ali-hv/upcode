@@ -34,7 +34,15 @@
                                 <td><i class="bi bi-check2-circle"></i></td>
                                 <td class="title"><a href="#">{{ problem.title }}</a><br><span>{{ problem.contest.name }}</span></td>
                                 <td style="font-size: 14px; color: #7b7b7b;">24 از 52</td>
-                                <td style="color: rgb(255, 208, 0);">متوسط</td>
+
+                                {% if problem.level == "easy" %}
+                                    <td style="color: rgb(0,213,188);">ساده</td>
+                                {% elif problem.level == "intermediate" %}
+                                    <td style="color: rgb(255,174,0);">متوسط</td>
+                                {% else %}
+                                    <td style="color: rgb(255,0,0);">سخت</td>
+                                {% endif %}
+
                                 <td class="tags">
                                     {% for tag in problem.tags.all %}
                                         <a href="#">{{ tag.name }}</a>
