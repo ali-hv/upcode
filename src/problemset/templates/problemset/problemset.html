@@ -37,7 +37,7 @@
                                     <span class="tooltiptext">حل کامل</span>
                                     <img class="problem-status-img" src="{%  static 'problemset/icons/solved.png' %}" alt="solved">
                                 {% elif problem.users.all|is_partial:user %}
-                                    <span class="tooltiptext">حل نا تمام</span>
+                                    <span class="tooltiptext">حل ناتمام</span>
                                     <img class="problem-status-img" src="{%  static 'problemset/icons/partial.png' %}" alt="partial">
                                 {% else %}
                                     <span class="tooltiptext">بدون تلاش</span>
