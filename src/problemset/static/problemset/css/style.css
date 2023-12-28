@@ -207,6 +207,7 @@ tr .tags a:hover {
     color: #616161;
     background-color: #fff;
     box-shadow: none;
+    cursor: default;
 }
 
 .filter-section select {
