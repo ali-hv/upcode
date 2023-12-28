@@ -2,13 +2,28 @@ from django.templatetags.static import static
 from django.conf import settings
 from django.db import models
 
+from problemset.models import Problem
+
 User = settings.AUTH_USER_MODEL
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name="profile"
+class UserProblem(models.Model):
+    STATUS_CHOICES = (
+        ("solved", "Solved"),
+        ("partial", "Partial"),
+        ("no-try", "No try"),
     )
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="problems")
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE, related_name="users")
+    status = models.CharField(max_length=7, choices=STATUS_CHOICES)
+
+    def __str__(self):
+        return self.problem.title
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     first_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)
     avatar = models.ImageField(upload_to="avatars/", blank=True)
