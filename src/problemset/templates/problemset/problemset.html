@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load problemset_extras %}
 
 {% block title %}بانک سوالات{% endblock %}
 
@@ -31,9 +32,21 @@
                     <tbody>
                         {% for problem in problemset %}
                             <tr>
-                                <td><i class="bi bi-check2-circle"></i></td>
+                                <td class="problem-status">
+                                {% if problem.users.all|is_solved:user %}
+                                    <span class="tooltiptext">حل کامل</span>
+                                    <img class="problem-status-img" src="{%  static 'problemset/icons/solved.png' %}" alt="solved">
+                                {% elif problem.users.all|is_partial:user %}
+                                    <span class="tooltiptext">حل نا تمام</span>
+                                    <img class="problem-status-img" src="{%  static 'problemset/icons/partial.png' %}" alt="partial">
+                                {% else %}
+                                    <span class="tooltiptext">بدون تلاش</span>
+                                    <img class="problem-status-img" src="{%  static 'problemset/icons/no-try.png' %}" alt="no try">
+                                {% endif %}
+                                </td>
+
                                 <td class="title"><a href="#">{{ problem.title }}</a><br><span>{{ problem.contest.name }}</span></td>
-                                <td style="font-size: 14px; color: #7b7b7b;">24 از 52</td>
+                                <td style="font-size: 14px; color: #7b7b7b;">{{ problem.get_number_of_solves }} از {{ problem.users.all|length }}</td>
 
                                 {% if problem.level == "easy" %}
                                     <td style="color: rgb(0,213,188);">ساده</td>
