@@ -27,6 +27,8 @@ class UserProblemAdmin(admin.ModelAdmin):
     list_display = (
         "user",
         "problem",
+        "language",
         "score",
         "status",
+        "submitted_date",
     )
