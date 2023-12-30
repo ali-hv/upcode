@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from contests.models import Contest
 from .models import Problem, Tag
@@ -16,3 +16,9 @@ class Problemset(ListView):
         context["tags"] = Tag.objects.all()
         context["contests"] = Contest.objects.all()
         return context
+
+
+class ProblemPage(DetailView):
+    model = Problem
+    context_object_name = "problem"
+    template_name = "problemset/problem.html"
