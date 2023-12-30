@@ -95,12 +95,33 @@
 
 .tabcontent .score {
     border-radius: 5px;
-    padding: 5px;
-    background-color: #48BB78;
+    /*padding: 5px;*/
+    background-color: #ff0000;
     color: #fff;
     border: none;
-    width: 50%;
+    width: 26%;
+    height: 27px;
     font-size: 11px;
+}
+
+progress {
+  background-color: #ff0000;
+}
+
+progress {
+  color: #ff0000;
+}
+
+progress::-moz-progress-bar {
+  background: #48BB78;
+}
+
+progress::-webkit-progress-value {
+  background: #fff;
+}
+
+progress::-webkit-progress-bar {
+  background: #fff;
 }
 
 .tabcontent .action-buttons {

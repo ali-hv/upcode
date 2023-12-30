@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load jalali_tags %}
 {% load problemset_extras %}
 
 {% block title %}{{ problem.title }}{% endblock %}
@@ -57,16 +58,22 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>17 مرداد 1401، 15:13</td>
-                            <td>Python</td>
-                            <td><button class="score">100</button></td>
-                            <td>
-                                <button class="action-buttons"><i class="bi bi-download"></i></button>
-                                <button class="action-buttons"><i class="bi bi-code-slash"></i></button>
-                                <button class="action-buttons"><i class="bi bi-file-earmark-bar-graph-fill"></i></button>
-                            </td>
-                        </tr>
+                        {%  for submission in problem.users.all|get_submissions:user %}
+                            <tr>
+                                <td>{{ submission.submitted_date|to_jalali:'%Y/%m/%d / %H:%M'|to_persian }}</td>
+                                <td>{{ submission.language }}</td>
+                                <td>
+                                    <progress class="score" id="progress" value="{{ submission.score }}" max="100">
+                                    {{ submission.score }}
+                                    </progress >
+                                </td>
+                                <td>
+                                    <button class="action-buttons"><i class="bi bi-download"></i></button>
+                                    <button class="action-buttons"><i class="bi bi-code-slash"></i></button>
+                                    <button class="action-buttons"><i class="bi bi-file-earmark-bar-graph-fill"></i></button>
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
               </div>
