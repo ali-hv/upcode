@@ -47,6 +47,11 @@ class Problem(models.Model):
     def __str__(self):
         return self.title
 
+    def get_number_of_tries(self):
+        users = self.users.all()
+        solves = [i for i in users if i.status != "waiting"]
+        return len(solves)
+
     def get_number_of_solves(self):
         users = self.users.all()
         solves = [i for i in users if i.status == "solved"]

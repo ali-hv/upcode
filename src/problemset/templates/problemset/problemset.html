@@ -46,7 +46,7 @@
                                 </td>
 
                                 <td class="title"><a href="{% url 'problemset:problem_page' problem.pk %}">{{ problem.title }}</a><br><span>{{ problem.contest.name }}</span></td>
-                                <td style="font-size: 14px; color: #7b7b7b;">{{ problem.get_number_of_solves }} از {{ problem.users.all|length }}</td>
+                                <td style="font-size: 14px; color: #7b7b7b;">{{ problem.get_number_of_solves }} از {{ problem.get_number_of_tries }}</td>
 
                                 {% if problem.level == "easy" %}
                                     <td style="color: rgb(0,213,188);">ساده</td>
