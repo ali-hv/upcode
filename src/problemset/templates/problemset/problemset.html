@@ -45,7 +45,7 @@
                                 {% endif %}
                                 </td>
 
-                                <td class="title"><a href="#">{{ problem.title }}</a><br><span>{{ problem.contest.name }}</span></td>
+                                <td class="title"><a href="{% url 'problemset:problem_page' problem.pk %}">{{ problem.title }}</a><br><span>{{ problem.contest.name }}</span></td>
                                 <td style="font-size: 14px; color: #7b7b7b;">{{ problem.get_number_of_solves }} از {{ problem.users.all|length }}</td>
 
                                 {% if problem.level == "easy" %}
