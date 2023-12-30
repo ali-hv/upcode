@@ -66,6 +66,7 @@ class Submission(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="problems")
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE, related_name="users")
+    submitted_date = models.DateTimeField(auto_now_add=True)
     file = models.FileField(upload_to="submissions/")
     result = models.FileField(upload_to="submissions_results/", blank=True, null=True)
     score = models.PositiveIntegerField(
