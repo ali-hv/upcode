@@ -68,7 +68,9 @@ class Submission(models.Model):
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE, related_name="users")
     file = models.FileField(upload_to="submissions/")
     result = models.FileField(upload_to="submissions_results/", blank=True, null=True)
-    score = models.PositiveIntegerField(validators=[MaxValueValidator], blank=True, null=True)
+    score = models.PositiveIntegerField(
+        validators=[MaxValueValidator(100)], blank=True, null=True
+    )
 
     def __str__(self):
         return self.problem.title
