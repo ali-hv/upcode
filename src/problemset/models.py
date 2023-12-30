@@ -1,6 +1,10 @@
+from django.core.validators import MaxValueValidator
+from django.conf import settings
 from django.db import models
 
 from contests.models import Contest
+
+User = settings.AUTH_USER_MODEL
 
 
 class Tag(models.Model):
@@ -47,3 +51,27 @@ class Problem(models.Model):
         users = self.users.all()
         solves = [i for i in users if i.status == "solved"]
         return len(solves)
+
+
+class Submission(models.Model):
+    STATUS_CHOICES = (
+        ("solved", "Solved"),
+        ("partial", "Partial"),
+    )
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="problems")
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE, related_name="users")
+    file = models.FileField(upload_to="submissions/")
+    result = models.FileField(upload_to="submissions_results/", blank=True, null=True)
+    score = models.PositiveIntegerField(validators=[MaxValueValidator], blank=True, null=True)
+
+    def __str__(self):
+        return self.problem.title
+
+    @property
+    def status(self):
+        if not self.score:
+            return "waiting"
+        elif self.score == 100:
+            return "solved"
+        return "partial"
