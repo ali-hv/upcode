@@ -68,9 +68,15 @@
                                 <td>{{ submission.submitted_date|to_jalali:'%Y/%m/%d / %H:%M'|to_persian }}</td>
                                 <td>{{ submission.language }}</td>
                                 <td>
-                                    <progress class="score" id="progress" value="{{ submission.score }}" max="100">
-                                    {{ submission.score }}
-                                    </progress >
+                                    {% if submission.score %}
+                                        <progress class="score" id="progress" value="{{ submission.score }}" max="100">
+                                        {{ submission.score }}
+                                        </progress >
+                                    {% else %}
+                                        <progress class="score" id="progress" value="0" max="100" style="background-color: #fce600ff">
+                                        درحال بررسی
+                                        </progress >
+                                    {% endif %}
                                 </td>
                                 <td>
                                     <button class="action-buttons"><i class="bi bi-download"></i></button>
