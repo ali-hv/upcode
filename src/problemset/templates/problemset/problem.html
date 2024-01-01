@@ -39,11 +39,16 @@
                     <label>
                         <i class="bi bi-paperclip" id="filename-label"> فایلی انتخاب نشده است</i>
                     </label>
-                    <label class="choose-file" for="choosefile" style="width: 25%; text-align: center">انتخاب فایل</label>
-                    <input id="choosefile" type="file" style="display: none">
+                    <form action="{% url 'problemset:create_submission' %}" method="post" enctype="multipart/form-data" style="display: inline">
+                        {% csrf_token %}
+                        <label class="choose-file" for="choosefile" style="width: 25%; text-align: center">انتخاب فایل</label>
+                        <input id="choosefile" type="file" name="submission-file" style="display: none">
+                        <input type="hidden" value="{{ problem.pk }}" name="problem">
+                        <input type="hidden" value="{{ 1 }}" name="language">
+                        <br><br>
+                        <button class="submit" id="submit">ارسال پاسخ</button>
+                    </form>
                 </div>
-                <br>
-                <button class="submit" id="submit">ارسال پاسخ</button>
               </div>
 
               <div id="submissions" class="tabcontent">

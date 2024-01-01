@@ -1,7 +1,9 @@
 from django.views.generic import ListView, DetailView
+from django.shortcuts import redirect
+from django.views import View
 
 from contests.models import Contest
-from .models import Problem, Tag
+from .models import Problem, Tag, Submission
 
 
 class Problemset(ListView):
@@ -22,3 +24,16 @@ class ProblemPage(DetailView):
     model = Problem
     context_object_name = "problem"
     template_name = "problemset/problem.html"
+
+
+class CreateSubmission(View):
+    def post(self, request):
+        obj = Submission(
+            user=request.user,
+            file=request.FILES["submission-file"],
+            problem_id=request.POST.get("problem"),
+            language_id=request.POST.get("language"),
+        )
+        obj.save()
+
+        return redirect("problemset:problem_page", request.POST.get("problem"))
