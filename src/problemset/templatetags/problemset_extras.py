@@ -44,6 +44,7 @@ def to_persian(date):
     date[1] = num_word[date[1]]
     date[2] = re.sub(r'0(\d)', r'\1', date[2])
     date.reverse()
+    date[0] += ' ,'
     date = ' '.join(date)
 
     for i in farsi_nums:
