@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.views.generic import ListView, DetailView
 from django.shortcuts import redirect
 from django.views import View
@@ -36,4 +37,4 @@ class CreateSubmission(View):
         )
         obj.save()
 
-        return redirect("problemset:problem_page", request.POST.get("problem"))
+        return redirect(reverse("problemset:problem_page", args=[request.POST.get("problem")])+"?tab=submission")

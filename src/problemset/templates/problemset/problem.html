@@ -14,8 +14,8 @@
         <div class="tab-container" dir="rtl">
             <div class="tab">
                 <i class="bi bi-bookmark" style="cursor: pointer;"></i>
-                <button class="tablinks" onclick="openSection(event, 'problem')" id="defaultOpen" style="margin-right: 25px;">سوال</button>
-                <button class="tablinks" onclick="openSection(event, 'submissions')">ارسال ها</button>
+                <button class="tablinks" onclick="openSection(event, 'problem')" id="problem-tab" style="margin-right: 25px;">سوال</button>
+                <button class="tablinks" onclick="openSection(event, 'submissions')" id="submission-tab">ارسال ها</button>
               </div>
 
               <!-- Tab content -->
@@ -134,9 +134,19 @@
 </section>
 
 <script>
-    document.getElementById("defaultOpen").click();
+    try {
+        var tab = window.location.href.split('?')[1].split('=')[1]
+    }
+    catch (err) {
+        document.getElementById("problem-tab").click();
+    }
 
-    function openSection(evt, cityName) {
+    if (tab === "submission")
+        document.getElementById("submission-tab").click();
+    else
+        document.getElementById("problem-tab").click();
+
+    function openSection(evt, tabName) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -153,7 +163,7 @@
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
     }
 
