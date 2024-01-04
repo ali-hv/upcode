@@ -5,7 +5,7 @@ import os
 from django.core.files import File
 
 
-def judge_submission(submission):
+def judge_python(submission):
     with open(submission.problem.test_cases.path, 'r') as f:
         test_cases = f.readlines()
     test_cases = [i.strip().split(',') for i in test_cases]

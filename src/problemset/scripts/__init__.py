@@ -1,1 +1,1 @@
-from .judge_submission import judge_submission
+from .judge_submission import judge_python
