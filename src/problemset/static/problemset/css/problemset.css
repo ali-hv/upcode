@@ -137,6 +137,12 @@ tr .tags a:hover {
     margin-right: 50px;
 }
 
+#close-filter-section {
+    float: left;
+    font-size: 25px;
+    cursor: pointer;
+    display: none
+}
 
 .filter-section select, .filter-section input {
     width: 100%;
@@ -237,11 +243,11 @@ tr .tags a:hover {
 
     .filter-section {
         width: 100%;
-        margin-top: 260px;
+        margin-top: 75px;
         display: none;
-        position: absolute; /* Change from 'relative' to 'absolute' */
-        top: 0; /* Position it at the top */
-        left: 0; /* Align with the left edge */
+        position: absolute;
+        top: 0;
+        left: 0;
         background-color: #fff;
         border-radius: 15px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

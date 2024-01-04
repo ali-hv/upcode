@@ -93,6 +93,7 @@
         <div class="filter-section" id="filterSection" dir="rtl">
             <div class="status">
                 <label class="title">وضعیت حل</label>
+                <i class="bi bi-x" id="close-filter-section" onclick="closeFilterSection()"></i>
                 <hr aria-orientation="horizontal">
                 <input type="checkbox" id="full-solved" name="full-solved" value="Bike">
                 <label for="full-solved"> حل کامل</label><br>
@@ -140,6 +141,12 @@
 
 <script>
     function toggleFilterSection() {
+        var filterSection = document.getElementById('filterSection');
+        filterSection.style.display = (filterSection.style.display === 'none' || filterSection.style.display === '') ? 'block' : 'none';
+        document.getElementById('close-filter-section').style.display = 'block';
+    }
+
+    function closeFilterSection() {
         var filterSection = document.getElementById('filterSection');
         filterSection.style.display = (filterSection.style.display === 'none' || filterSection.style.display === '') ? 'block' : 'none';
     }
