@@ -51,3 +51,12 @@ def to_persian(date):
         date = date.replace(i, farsi_nums[i])
 
     return date
+
+
+@register.filter
+def to_persian_digits(number):
+    persian_digits = '۱۲۳۴۵۶۷۸۹۰'
+    normal_digits = '1234567890'
+    translation_table = str.maketrans(normal_digits, persian_digits)
+    translated_number = str(number).translate(translation_table)
+    return translated_number

@@ -70,7 +70,7 @@
                                 <td style="position: relative;">
                                     {% if submission.score %}
                                         <progress class="score" id="progress" value="{{ submission.score }}" max="100"></progress >
-                                        <label class="progress-text" style="font-size: 13px">{{ submission.score }}</label>
+                                        <label class="progress-text" style="font-size: 13px">{{ submission.score|to_persian_digits }}</label>
                                     {% else %}
                                         <progress class="score" id="progress" value="0" max="100" style="background-color: #fcc100"></progress >
                                         <label class="progress-text">در حال داوری</label>
