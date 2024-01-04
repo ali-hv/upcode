@@ -24,7 +24,7 @@ def get_submissions(problems, user):
     for i in problems:
         if i.user == user:
             submissions.append(i)
-    return submissions
+    return submissions[::-1]
 
 
 @register.filter
