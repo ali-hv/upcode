@@ -77,7 +77,7 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <button class="action-buttons"><i class="bi bi-download"></i></button>
+                                    <a href="{{ submission.file.url }}"><button class="action-buttons"><i class="bi bi-download"></i></button></a>
                                     <button class="action-buttons"><i class="bi bi-code-slash"></i></button>
                                     <button class="action-buttons" onclick="openJudgeResult({{ submission.id }})">
                                         <i class="bi bi-file-earmark-bar-graph-fill"></i>
