@@ -29,7 +29,7 @@
                 <p>{{ problem.detail }}</p>
                 <hr>
                 <h6>ارسال پاسخ برای این سوال</h6><br>
-                <select>
+                <select id="languageSelect">
                     {%  for language in problem.languages.all %}
                         <option>{{ language }}</option>
                     {% endfor %}
@@ -39,12 +39,12 @@
                     <label>
                         <i class="bi bi-paperclip" id="filename-label"> فایلی انتخاب نشده است</i>
                     </label>
-                    <form action="{% url 'problemset:create_submission' %}" method="post" enctype="multipart/form-data" style="display: inline">
+                    <form action="{% url 'problemset:create_submission' %}" onsubmit="getLanguage()" method="post" enctype="multipart/form-data" style="display: inline">
                         {% csrf_token %}
                         <label class="choose-file" for="choosefile" style="width: 25%; text-align: center">انتخاب فایل</label>
                         <input id="choosefile" type="file" name="submission-file" style="display: none">
                         <input type="hidden" value="{{ problem.pk }}" name="problem">
-                        <input type="hidden" value="{{ 1 }}" name="language">
+                        <input type="hidden" id="languageName" value="" name="language">
                         <br><br>
                         <button class="submit" id="submit">ارسال پاسخ</button>
                     </form>
@@ -182,6 +182,16 @@
         {
             this.style.backgroundColor = "#ee13df";
         }
+    }
+
+    function getLanguage() {
+        var languageName = document.getElementById("languageSelect");
+        var name = languageName.options[ languageName.selectedIndex ].value;
+
+        var languageInput = document.getElementById('languageName');
+        languageInput.value = name;
+
+        return true;
     }
 </script>
 
