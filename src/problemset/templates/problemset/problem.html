@@ -78,11 +78,24 @@
                                 </td>
                                 <td>
                                     <a href="{{ submission.file.url }}"><button class="action-buttons"><i class="bi bi-download"></i></button></a>
-                                    <button class="action-buttons"><i class="bi bi-code-slash"></i></button>
+
+                                    <button class="action-buttons" onclick="openSourceCode({{ submission.id }})">
+                                        <i class="bi bi-code-slash"></i>
+                                    </button>
+                                    <div class="source-code" id="source-code-{{ submission.id }}">
+                                        <i class="bi bi-x close-source-code" onclick="closeSourceCode({{ submission.id }})"></i>
+                                        <label style="color:#7b7b7b;">{{ submission.file.name }}</label>
+                                        <br><hr>
+                                        {%  for line in submission.get_file_lines %}
+
+                                            <label>{{ line }}</label>
+                                            <label style="color:#7b7b7b;"> &nbsp;| {{ forloop.counter }}</label><br>
+                                        {% endfor %}
+                                    </div>
+
                                     <button class="action-buttons" onclick="openJudgeResult({{ submission.id }})">
                                         <i class="bi bi-file-earmark-bar-graph-fill"></i>
                                     </button>
-
                                     <div class="judge-result" id="judge-result-{{ submission.id }}">
                                         <i class="bi bi-x close-judge-result" onclick="closeJudgeResult({{ submission.id }})"></i>
                                         <label style="color: #7b7b7b">Submission ID: {{ submission.id }}</label>

@@ -148,7 +148,7 @@ progress::-webkit-progress-bar {
     background-color: #eaeaea;
 }
 
-.judge-result {
+.judge-result, .source-code {
     display: none;
     position: absolute;
     text-align: left;
@@ -165,13 +165,13 @@ progress::-webkit-progress-bar {
     overflow: auto;"
 }
 
-.close-judge-result {
+.close-judge-result, .close-source-code {
     float: right;
     font-size: 20px;
     cursor: pointer
 }
 
-.close-judge-result:hover {
+.close-judge-result:hover, .close-source-code:hover {
     background-color: #eaeaea;
 }
 

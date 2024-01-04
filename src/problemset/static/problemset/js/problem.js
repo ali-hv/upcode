@@ -64,3 +64,11 @@ function openJudgeResult(submission_id) {
 function closeJudgeResult(submission_id) {
     document.getElementById('judge-result-'+submission_id).style.display='none';
 }
+
+function openSourceCode(submission_id) {
+    document.getElementById('source-code-'+submission_id).style.display = 'block';
+}
+
+function closeSourceCode(submission_id) {
+    document.getElementById('source-code-'+submission_id).style.display = 'none';
+}

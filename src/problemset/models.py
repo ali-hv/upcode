@@ -94,3 +94,13 @@ class Submission(models.Model):
 
         result = [i.strip() for i in result]
         return result
+
+    def get_file_lines(self):
+        try:
+            with open(self.file.path) as file:
+                file = file.readlines()
+        except ValueError:
+            return None
+
+        file = [i.strip() for i in file]
+        return file
