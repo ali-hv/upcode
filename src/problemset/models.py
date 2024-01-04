@@ -84,3 +84,13 @@ class Submission(models.Model):
         elif self.score == 100:
             return "solved"
         return "partial"
+
+    def get_judge_result(self):
+        try:
+            with open(self.result.path) as file:
+                result = file.readlines()
+        except ValueError:
+            return None
+
+        result = [i.strip() for i in result]
+        return result

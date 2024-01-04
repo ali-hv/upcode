@@ -56,3 +56,11 @@ function getLanguage() {
 
     return true;
 }
+
+function openJudgeResult(submission_id) {
+    document.getElementById('judge-result-'+submission_id).style.display='block';
+}
+
+function closeJudgeResult(submission_id) {
+    document.getElementById('judge-result-'+submission_id).style.display='none';
+}

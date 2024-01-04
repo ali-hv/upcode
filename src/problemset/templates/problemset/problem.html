@@ -79,7 +79,25 @@
                                 <td>
                                     <button class="action-buttons"><i class="bi bi-download"></i></button>
                                     <button class="action-buttons"><i class="bi bi-code-slash"></i></button>
-                                    <button class="action-buttons"><i class="bi bi-file-earmark-bar-graph-fill"></i></button>
+                                    <button class="action-buttons" onclick="openJudgeResult({{ submission.id }})">
+                                        <i class="bi bi-file-earmark-bar-graph-fill"></i>
+                                    </button>
+
+                                    <div class="judge-result" id="judge-result-{{ submission.id }}">
+                                        <i class="bi bi-x close-judge-result" onclick="closeJudgeResult({{ submission.id }})"></i>
+                                        <label style="color: #7b7b7b">Submission ID: {{ submission.id }}</label>
+                                        <br><br>
+                                        {%  for result in submission.get_judge_result %}
+                                            <label style="color: #1645ff">Test {{ forloop.counter }}</label><br>
+                                            {% if result == "Accepted" %}
+                                                <label style="color: #219d25">{{ result }}</label><br>
+                                            {% elif result == "Wrong Answer" %}
+                                                <label style="color: #9d2121">{{ result }}</label><br>
+                                            {% else %}
+                                                <label style="color: #daca0b">{{ result }}</label><br>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
