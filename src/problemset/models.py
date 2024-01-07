@@ -2,6 +2,10 @@ from django.core.validators import MaxValueValidator
 from django.conf import settings
 from django.db import models
 
+from pygments import highlight
+from pygments.formatters import HtmlFormatter
+from pygments.lexers import get_lexer_by_name
+
 from contests.models import Contest
 
 User = settings.AUTH_USER_MODEL
@@ -95,12 +99,32 @@ class Submission(models.Model):
         result = [i.strip() for i in result]
         return result
 
-    def get_file_lines(self):
+    def get_html_judge_result(self):
+        html = ''
+
+        for index, result in enumerate(self.get_judge_result()):
+            html += f'<label style="color: #1645ff">Test { index+1 }</label><br>'
+            if result == "Accepted":
+                html += f'<label style="color: #219d25">{ result }</label><br>'
+            elif result == "Wrong Answer":
+                html += f'<label style="color: #9d2121">{ result }</label><br>'
+            else:
+                html += f'<label style="color: #daca0b">{ result }</label><br>'
+
+        return html
+
+    def get_code(self):
         try:
             with open(self.file.path) as file:
                 file = file.readlines()
         except ValueError:
             return None
 
-        file = [i.strip() for i in file]
-        return file
+        file = [f"{str(index+1)} | {code}" for index, code in enumerate(file)]
+        str_file = ""
+        for i in file:
+            str_file += i
+
+        lexer = get_lexer_by_name(self.language.name, stripall=True)
+        formatter = HtmlFormatter(full=True, style="emacs")
+        return highlight(str_file, lexer, formatter)

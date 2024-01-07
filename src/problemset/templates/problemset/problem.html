@@ -68,7 +68,7 @@
                                 <td>{{ submission.submitted_date|to_jalali:'%Y/%m/%d / %H:%M'|to_persian }}</td>
                                 <td>{{ submission.language }}</td>
                                 <td style="position: relative;">
-                                    {% if submission.score %}
+                                    {% if submission.score is not None %}
                                         <progress class="score" id="progress" value="{{ submission.score }}" max="100"></progress >
                                         <label class="progress-text" style="font-size: 13px">{{ submission.score|to_persian_digits }}</label>
                                     {% else %}
@@ -82,15 +82,13 @@
                                     <button class="action-buttons" onclick="openSourceCode({{ submission.id }})">
                                         <i class="bi bi-code-slash"></i>
                                     </button>
-                                    <div class="source-code" id="source-code-{{ submission.id }}">
+                                    <div class="source-code" id="source-code-{{ submission.id }}" dir="ltr">
                                         <i class="bi bi-x close-source-code" onclick="closeSourceCode({{ submission.id }})"></i>
                                         <label style="color:#7b7b7b;">{{ submission.file.name }}</label>
                                         <br><hr>
-                                        {%  for line in submission.get_file_lines %}
-
-                                            <label>{{ line }}</label>
-                                            <label style="color:#7b7b7b;"> &nbsp;| {{ forloop.counter }}</label><br>
-                                        {% endfor %}
+                                        <div style="font-size: 22px;">
+                                            {{ submission.get_code|safe }}
+                                        </div>
                                     </div>
 
                                     <button class="action-buttons" onclick="openJudgeResult({{ submission.id }})">
@@ -100,16 +98,9 @@
                                         <i class="bi bi-x close-judge-result" onclick="closeJudgeResult({{ submission.id }})"></i>
                                         <label style="color: #7b7b7b">Submission ID: {{ submission.id }}</label>
                                         <br><br>
-                                        {%  for result in submission.get_judge_result %}
-                                            <label style="color: #1645ff">Test {{ forloop.counter }}</label><br>
-                                            {% if result == "Accepted" %}
-                                                <label style="color: #219d25">{{ result }}</label><br>
-                                            {% elif result == "Wrong Answer" %}
-                                                <label style="color: #9d2121">{{ result }}</label><br>
-                                            {% else %}
-                                                <label style="color: #daca0b">{{ result }}</label><br>
-                                            {% endif %}
-                                        {% endfor %}
+                                        <div style="font-size: 15px;">
+                                            {{ submission.get_html_judge_result|safe }}
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
