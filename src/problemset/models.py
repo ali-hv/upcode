@@ -79,7 +79,7 @@ class Submission(models.Model):
 
     @property
     def status(self):
-        if not self.score:
+        if self.score is None:
             return "waiting"
         elif self.score == 100:
             return "solved"
