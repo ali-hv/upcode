@@ -1,0 +1,142 @@
+@font-face {
+font-family: Vazir;
+src: url("Vazir-Regular.ttf") format("truetype");
+}
+
+html * {
+font-family: Vazir;
+}
+
+.problemset-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    border-radius: 5px;
+    display: flex;
+}
+
+.table-container {
+    width: 100%;
+}
+
+.table-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    font-size: 15px;
+}
+
+thead th {
+    background-color: #fff;
+    color: #7b7b7b;
+}
+
+tbody span {
+    font-size: 12px;
+    color: #b8b8b8;
+}
+
+tbody a {
+    color: #ee13df;
+    text-decoration: none;
+}
+
+tbody a:hover {
+    text-decoration: underline;
+}
+
+tbody .problem-status-img {
+    max-width: 25px;
+}
+
+
+th, td {
+    padding: 12px;
+    text-align: right;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr i {
+    font-size: 1.3em;
+}
+
+tr .tags a {
+    background-color: #E2E8F0;
+    color: #7b7b7b;
+    text-decoration: none;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+tr .tags a:hover {
+    background-color: #d0d2d5;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.pagination a {
+    padding: 8px 12px;
+    text-decoration: none;
+    background: none;
+    color: rgb(68, 68, 68);
+}
+
+.pagination .active {
+    border-bottom: 2px solid #ee13df;
+    color: #ee13df;
+}
+
+.pagination a:hover {
+    background-color: #feeefd;
+}
+
+.contests-category {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 30px;
+    border-radius: 10px;
+    border-top: 2px solid #ee13df;
+}
+
+.contests-category i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+@media (max-width: 768px) {
+    .problemset-container {
+        flex-direction: column;
+    }
+
+    .table-container {
+        width: 100%;
+        padding-right: 0;
+    }
+}

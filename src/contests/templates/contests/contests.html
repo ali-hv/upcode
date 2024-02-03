@@ -1,0 +1,99 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load jalali_tags %}
+{% load problemset_extras %}
+
+{% block title %}مسابقات{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'contests/contests.css' %}">
+
+<section class="py-5 head">
+    <div class="problemset-container" dir="ltr">
+        <div class="table-container" dir="rtl">
+            <div class="contests-category">
+                <i class="bi bi-search"></i>
+                <label>مسابقات در حال اجرا</label>
+            </div>
+
+            <div class="table-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>نام مسابقه</th>
+                            <th>زمان شروع</th>
+                            <th>مدت مسابقه</th>
+                            <th>#سوالات</th>
+                            <th>#شرکت کنندگان</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {% for contest in running_contests %}
+                                <tr>
+                                    <td class="title"><a href="">{{ contest.name }}</a>
+                                        <br>
+                                        <span style="background-color: #d5d5d5; border-radius: 5px; color: #474747; padding: 2px 5px 2px 5px;">دیوار</span>
+
+                                    </td>
+
+                                    <td>{{ contest.start_time|to_jalali:'%Y/%m/%d / %H:%M'|to_persian }}</td>
+                                    <td style="font-size: 14px; color: #7b7b7b;">{{ contest.duration}}</td>
+
+                                    <td>{{ contest.problems.all|length }}</td>
+
+                                    <td>{{ contest.participants.all|length }}</td>
+
+                                    <td style="text-align: center; padding: 6px;">
+                                        <a href="" style="background-color: #ff007b; color: #fff; padding: 4px 8px 4px 8px; border-radius: 5px; font-size: 12px;">مشاهده سوالات</a>
+                                        <br><a>صفحه رویداد</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#" class="active">2</a>
+                <a href="#" class="active">3</a>
+            </div>
+            <br><br>
+
+            <div class="contests-category">
+                <i class="bi bi-search"></i>
+                <label>مسابقات گذشته</label>
+            </div>
+
+            <div class="table-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>نام مسابقه</th>
+                            <th>زمان شروع</th>
+                            <th>مدت مسابقه</th>
+                            <th>#سوالات</th>
+                            <th>#شرکت کنندگان</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#" class="active">2</a>
+                <a href="#" class="active">3</a>
+            </div>
+        </div>
+    </div>
+</section>>
+
+<script src="{%  static 'problemset/js/problemset.js' %}"></script>
+
+{% endblock content %}
