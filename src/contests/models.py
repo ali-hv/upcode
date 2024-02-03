@@ -27,3 +27,6 @@ class Contest(models.Model):
     def is_contest_active(self):
         now = timezone.now()
         return self.start_time <= now <= self.end_time
+
+    def duration(self):
+        return self.end_time.hour - self.start_time.hour
