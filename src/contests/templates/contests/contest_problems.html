@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+
+{%  block title %}{{ contest.name }}{% endblock %}
+
+{%  block content %}
+
+    <div style="text-align: center; margin-top: 100px">
+        {%  for i in contest.problems.all %}
+            <a href="">{{ i.title }}</a><br>
+        {% endfor %}
+    </div>
+
+{% endblock %}

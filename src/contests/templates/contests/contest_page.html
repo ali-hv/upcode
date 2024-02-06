@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{%  block title %}{{ contest.name }}{% endblock %}
+
+{%  block content %}
+
+    <div style="text-align: center; margin-top: 100px">
+        {{ contest.name }}<br>
+        {{ contest.detail }}<br>
+    </div>
+
+{% endblock %}

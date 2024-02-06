@@ -32,7 +32,7 @@
                     <tbody>
                             {% for contest in running_contests %}
                                 <tr>
-                                    <td class="title"><a href="">{{ contest.name }}</a>
+                                    <td class="title"><a href="{% url 'contests:contest_page' contest.pk %}">{{ contest.name }}</a>
                                         <br>
 {#                                        <span style="background-color: #d5d5d5; border-radius: 5px; color: #474747; padding: 2px 5px 2px 5px;">دیوار</span>#}
                                     </td>
@@ -45,8 +45,8 @@
                                     <td>{{ contest.participants.all|length }}</td>
 
                                     <td style="text-align: center; padding: 6px;">
-                                        <a href="" style="background-color: #ff007b; color: #fff; padding: 4px 8px 4px 8px; border-radius: 5px; font-size: 12px;">مشاهده سوالات</a>
-                                        <br><a>صفحه رویداد</a>
+                                        <a href="{% url 'contests:contest_problems' contest.pk %}" style="background-color: #ff007b; color: #fff; padding: 4px 8px 4px 8px; border-radius: 5px; font-size: 12px;">مشاهده سوالات</a>
+                                        <br><a href="{% url 'contests:contest_page' contest.pk %}">صفحه رویداد</a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -81,7 +81,7 @@
                     <tbody>
                         {% for contest in done_contests %}
                                 <tr>
-                                    <td class="title"><a href="">{{ contest.name }}</a>
+                                    <td class="title"><a href="{% url 'contests:contest_page' contest.pk %}">{{ contest.name }}</a>
                                         <br>
 {#                                        <span style="background-color: #d5d5d5; border-radius: 5px; color: #474747; padding: 2px 5px 2px 5px;">دیوار</span>#}
                                     </td>
@@ -94,8 +94,8 @@
                                     <td>{{ contest.participants.all|length }}</td>
 
                                     <td style="text-align: center; padding: 6px;">
-                                        <a href="" style="background-color: #ff007b; color: #fff; padding: 4px 8px 4px 8px; border-radius: 5px; font-size: 12px;">مشاهده سوالات</a>
-                                        <br><a>صفحه رویداد</a>
+                                        <a href="{% url 'contests:contest_problems' contest.pk %}" style="background-color: #ff007b; color: #fff; padding: 4px 8px 4px 8px; border-radius: 5px; font-size: 12px;">مشاهده سوالات</a>
+                                        <br><a href="{% url 'contests:contest_page' contest.pk %}">صفحه رویداد</a>
                                     </td>
                                 </tr>
                             {% endfor %}
