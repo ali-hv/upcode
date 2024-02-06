@@ -9,7 +9,7 @@ from .models import Problem, Tag, Submission, Language
 
 class Problemset(ListView):
     model = Problem
-    queryset = model.objects.all()
+    queryset = model.objects.filter(contest__is_active=False)
     context_object_name = "problemset"
     template_name = "problemset/problemset.html"
     paginate_by = 15
