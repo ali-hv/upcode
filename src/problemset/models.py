@@ -36,6 +36,7 @@ class Problem(models.Model):
 
     title = models.CharField(max_length=255)
     detail = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(Tag, related_name="problems")
     languages = models.ManyToManyField(Language, related_name="problems")
     time_limit = models.PositiveIntegerField()
