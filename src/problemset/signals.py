@@ -11,7 +11,6 @@ from .scripts import judge_python
 def judge_submission_handler(sender, instance, created, **kwargs):
     if not created:
         return
-
-    if str(instance.language) == 'Python 3':
+    if str(instance.language) == 'Python3':
         judge_thread = Thread(target=judge_python, args=[instance])
         judge_thread.start()
