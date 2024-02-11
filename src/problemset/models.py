@@ -39,7 +39,6 @@ class Problem(models.Model):
     time_limit = models.PositiveIntegerField()
     memory_limit = models.PositiveIntegerField()
     level = models.CharField(max_length=12, choices=LEVEL_CHOICES)
-    test_cases = models.FileField(upload_to="test_cases/")
     contest = models.ForeignKey(
         Contest,
         blank=True,
@@ -60,6 +59,16 @@ class Problem(models.Model):
         users = self.users.all()
         solves = [i for i in users if i.status == "solved"]
         return len(solves)
+
+
+class TestCase(models.Model):
+    problem = models.ForeignKey(
+        Problem,
+        on_delete=models.CASCADE,
+        related_name="test_cases",
+    )
+    input_file = models.FileField(upload_to="problem_inputs/")
+    output_file = models.FileField(upload_to="problem_outputs/")
 
 
 class Submission(models.Model):
@@ -100,7 +109,10 @@ class Submission(models.Model):
         return result
 
     def get_html_judge_result(self):
-        html = ''
+        html = ""
+
+        if not self.get_judge_result():
+            return ""
 
         for index, result in enumerate(self.get_judge_result()):
             html += f'<label style="color: #1645ff">Test { index+1 }</label><br>'
