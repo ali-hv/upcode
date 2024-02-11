@@ -6,6 +6,8 @@ from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name
 
+import os
+
 from contests.models import Contest
 
 User = settings.AUTH_USER_MODEL
@@ -61,14 +63,26 @@ class Problem(models.Model):
         return len(solves)
 
 
+def input_path(instance, filename):
+    # Produce the upload path of input files dynamically based on the problem pk
+    problem_pk = str(instance.problem.pk)
+    return os.path.join("testcases", problem_pk, "inputs", filename)
+
+
+def output_path(instance, filename):
+    # Produce the upload path of output files dynamically based on the problem pk
+    problem_pk = str(instance.problem.pk)
+    return os.path.join("testcases", problem_pk, "outputs", filename)
+
+
 class TestCase(models.Model):
     problem = models.ForeignKey(
         Problem,
         on_delete=models.CASCADE,
         related_name="test_cases",
     )
-    input_file = models.FileField(upload_to="problem_inputs/")
-    output_file = models.FileField(upload_to="problem_outputs/")
+    input_file = models.FileField(upload_to=input_path)
+    output_file = models.FileField(upload_to=output_path)
 
 
 class Submission(models.Model):
