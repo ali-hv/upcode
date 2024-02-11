@@ -4,13 +4,13 @@ from .models import Submission
 
 from threading import Thread
 
-from .scripts import judge_python
+from .scripts import judge_submission
 
 
 @receiver(post_save, sender=Submission)
 def judge_submission_handler(sender, instance, created, **kwargs):
     if not created:
         return
-    if str(instance.language) == 'Python3':
-        judge_thread = Thread(target=judge_python, args=[instance])
-        judge_thread.start()
+
+    judge_thread = Thread(target=judge_submission.judge, args=[instance])
+    judge_thread.start()
