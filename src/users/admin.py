@@ -17,8 +17,8 @@ class UserAdmin(BaseUserAdmin):
     model = User
     inlines = [UserProfileInline]
     list_display = (
-        "username",
         "email",
+        "username",
         "is_superuser",
         "is_staff",
         "is_active",
