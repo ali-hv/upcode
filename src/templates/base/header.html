@@ -24,8 +24,8 @@
     
     {% if not user.is_authenticated %}
       <a href="#"><button class="enter-companies-section">ورود به بخش شرکت ها &nbsp;</button></a>
-      <a href="#"><button class="login-button">ورود</button></a>
-      <a href="#"><button class="signup-button">عضویت</button></a>
+      <a href="{% url 'users:login' %}"><button class="login-button">ورود</button></a>
+      <a href="{% url 'users:register' %}"><button class="signup-button">عضویت</button></a>
     </div>
     {% else %}
     </div>
