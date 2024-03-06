@@ -1,0 +1,269 @@
+.problemset-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    border-radius: 5px;
+    display: flex;
+}
+
+.table-container {
+    width: 75%;
+    padding-right: 20px;
+}
+
+.table-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    font-size: 15px;
+}
+
+thead th {
+    background-color: #fff;
+    color: #7b7b7b;
+}
+
+tbody span {
+    font-size: 15px;
+    color: #b8b8b8;
+}
+
+tbody a {
+    color: #ee13df;
+    text-decoration: none;
+}
+
+tbody a:hover {
+    text-decoration: underline;
+}
+
+tbody .problem-status-img {
+    max-width: 25px;
+}
+
+.problem-status {
+  position: relative;
+}
+
+.problem-status .tooltiptext {
+  visibility: hidden;
+  width: 55px;
+  font-size: 10px;
+  background-color: #5b5b5b;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.4s ease-in-out;
+  top: -10px;
+  left: 18px;
+}
+
+.problem-status:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+th, td {
+    padding: 12px;
+    text-align: right;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr i {
+    font-size: 1.3em;
+}
+
+tr .tags a {
+    background-color: #E2E8F0;
+    color: #7b7b7b;
+    text-decoration: none;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+tr .tags a:hover {
+    background-color: #d0d2d5;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.pagination a {
+    padding: 8px 12px;
+    text-decoration: none;
+    background: none;
+    color: rgb(68, 68, 68);
+}
+
+.pagination .active {
+    border-bottom: 2px solid #ee13df;
+    color: #ee13df;
+}
+
+.pagination a:hover {
+    background-color: #feeefd;
+}
+
+.filter-section {
+    width: 25%;
+    margin-top: 20px;
+    margin-right: 50px;
+}
+
+#close-filter-section {
+    float: left;
+    font-size: 25px;
+    cursor: pointer;
+    display: none
+}
+
+.filter-section select, .filter-section input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(203, 203, 203);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+
+.search-box {
+    width: 100%;
+    margin-left: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+.search-box i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.search-box input::placeholder {
+    color: rgb(120, 120, 120);
+ }
+
+.search-box input:focus {
+    border-color: #d3d3d3;
+}
+
+.filter-toggle-button {
+    width: 100%;
+    /* max-width: 400px; */
+    background-color: #ee13df;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: none; /* Hidden by default on larger screens */
+}
+
+.status {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-section .title {
+    color: #616161;
+    background-color: #fff;
+    box-shadow: none;
+    cursor: default;
+}
+
+.filter-section select {
+    color: #616161;
+}
+
+.filter-section hr {
+    border: 1px solid #d9d9d9;
+    border-width: 0.01em;
+}
+
+.status input {
+    width: auto;
+    cursor: pointer;
+}
+
+.status label {
+    color: #616161;
+    cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+    .problemset-container {
+        flex-direction: column;
+    }
+
+    .filter-section {
+        width: 100%;
+        margin-top: 75px;
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .problem-status .tooltiptext {
+        top: 12px;
+        left: -2px;
+    }
+
+    .filter-toggle-button {
+        display: block;
+    }
+}
