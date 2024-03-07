@@ -22,6 +22,18 @@ services:
     depends_on:
       - "mariadb"
       - "nginx"
+      - "rabbit"
+
+  rabbit:
+    image: rabbitmq:alpine
+    container_name: rabbit
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+      - RABBITMQ_DEFAULT_VHOST=/
+    ports:
+      - "5672:5672"
+      - "15672:15672"
   
   mariadb:
     image: 'mariadb:latest'
