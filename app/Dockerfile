@@ -2,7 +2,7 @@ FROM python:alpine
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_SUPERUSER_PASSWORD admin
+ENV DJANGO_SUPERUSER_PASSWORD ${DJANGO_SUPERUSER_PASSWORD}
 
 RUN mkdir /app
 WORKDIR /app
@@ -21,5 +21,5 @@ CMD while ! python3 manage.py sqlflush > /dev/null 2>&1 ; do sleep 1; done && \
     python3 manage.py makemigrations --noinput && \
     python3 manage.py migrate --noinput && \
     python3 manage.py collectstatic --noinput && \
-    python3 manage.py createsuperuser --email admin@gmail.com --no-input; \
+    python3 manage.py createsuperuser --email ${DJANGO_SUPERUSER_EMAIL} --no-input; \
     gunicorn -b 0.0.0.0:8000 config.wsgi
