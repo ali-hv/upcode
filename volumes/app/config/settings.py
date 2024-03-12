@@ -16,7 +16,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["app"]
 
-CSRF_TRUSTED_ORIGINS=['http://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['http://*.127.0.0.1']
 
 
 # Application definition
@@ -72,24 +72,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get("MARIADB_DATABASE"),
-        'USER': os.environ.get("MARIADB_USER"),
-        'PASSWORD': os.environ.get("MARIADB_PASSWORD"),
-        'HOST': os.environ.get("MARIADB_HOST"),
+        'NAME': os.environ.get("MARIADB_DATABASE", "django_app"),
+        'USER': os.environ.get("MARIADB_USER", "django_user"),
+        'PASSWORD': os.environ.get("MARIADB_PASSWORD", "1234"),
+        'HOST': os.environ.get("MARIADB_HOST", "mariadb"),
     }
 }
 
@@ -141,3 +130,7 @@ MEDIA_ROOT = BASE_DIR.parent / 'media'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# celery config
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
