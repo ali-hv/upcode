@@ -1,7 +1,6 @@
 version: "3.8"
 
 services:
-
   app:
     env_file: 
       - .env
@@ -10,46 +9,37 @@ services:
     restart: 'always'
     expose:
       - '8000'
-    environment:
-      - "MARIADB_DATABASE=${MARIADB_DATABASE}"
-      - "MARIADB_USER=${MARIADB_USER}"
-      - "MARIADB_PASSWORD=${MARIADB_PASSWORD}"
-      - "MARIADB_HOST=mariadb"
     volumes:
       - type: 'bind'
         source: './volumes/app'
         target: '/app'
+    links:
+      - redis
     depends_on:
       - "mariadb"
       - "nginx"
-      - "rabbit"
+      - "redis"
 
-  rabbit:
-    image: rabbitmq:alpine
-    container_name: rabbit
-    environment:
-      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
-      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
-      - RABBITMQ_DEFAULT_VHOST=/
-    ports:
-      - "5672:5672"
-      - "15672:15672"
+  redis:
+    image: redis:alpine
+    container_name: redis
+    expose:
+      - "6379"
   
   mariadb:
+    env_file:
+      - .env
     image: 'mariadb:latest'
     container_name: 'mariadb'
     restart: 'always'
     expose:
       - '3306'
-    environment:
-      - "MARIADB_DATABASE=${MARIADB_DATABASE}"
-      - "MARIADB_USER=${MARIADB_USER}"
-      - "MARIADB_PASSWORD=${MARIADB_PASSWORD}"
-      - "MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}"
     volumes:
       - type: 'bind'
         source: './volumes/dbdata'
         target: '/var/lib/mysql'
+    links:
+      - redis
 
 
   nginx:
@@ -66,3 +56,18 @@ services:
       - type: 'bind'
         source: './volumes/static'
         target: '/app/static'
+    links:
+      - redis
+
+  celery_worker:
+    env_file:
+      - .env
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    restart: 'always'
+    command: su -m myuser -c 'sleep 5 && celery -A config worker -l info'
+    volumes:
+      - ./volumes/app:/app
+    links:
+      - redis
