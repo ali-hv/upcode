@@ -3,12 +3,7 @@
 ```
 git clone https://github.com/ali-hv/upcode.git
 ```
-2. install the requirements
+2. Run the project
 ```
-pip install -r requirements.txt
-```
-3. run the project:
-```
-cd src
-python manage.py runserver
+docker-compose up --build
 ```
