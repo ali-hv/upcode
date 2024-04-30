@@ -66,7 +66,7 @@ class Problem(models.Model):
 
     def get_contest_page_url(self):
         if self.contest:
-            return reverse('contests:contest_page', args=[self.pk])
+            return reverse('contests:contest_page', args=[self.contest.pk])
 
 
 def input_path(instance, filename):

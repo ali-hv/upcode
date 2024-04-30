@@ -126,7 +126,7 @@
                 </div>
 
                 <label class="title">{{ problem.title }}</label><br>
-                <a href="{% url 'contests:contest_page' problem.contest.pk %}" class="contest">{{ problem.contest.name }}</a>
+                <a href="{{ problem.get_contest_page_url }}" class="contest">{{ problem.contest.name }}</a>
 
                 {% if problem.level == "easy" %}
                     <label class="level easy">ساده</label><br><br>
