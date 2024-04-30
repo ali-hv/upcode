@@ -5,8 +5,8 @@
 {%  block content %}
 
     <div style="text-align: center; margin-top: 100px">
-        {%  for i in contest.problems.all %}
-            <a href="">{{ i.title }}</a><br>
+        {%  for problem in contest.problems.all %}
+            <a href="{% url 'problemset:problem_page' problem.pk %}">{{ problem.title }}</a><br>
         {% endfor %}
     </div>
 
