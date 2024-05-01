@@ -55,13 +55,14 @@ class Problem(models.Model):
         return self.title
 
     def get_number_of_tries(self):
-        users = self.users.all()
-        solves = [i for i in users if i.status != "waiting"]
+        submissions = self.submissions.all()
+        solves = set([i.user_id for i in submissions if i.status != "waiting"])
         return len(solves)
 
     def get_number_of_solves(self):
-        users = self.users.all()
-        solves = [i for i in users if i.status == "solved"]
+        submissions = self.submissions.all()
+        solves = set([i.user_id for i in submissions if i.status == "solved"])
+        # unique_users = set(submission.user_id for submission in solves)
         return len(solves)
 
     def get_contest_page_url(self):
@@ -98,7 +99,7 @@ class Submission(models.Model):
     )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="problems")
-    problem = models.ForeignKey(Problem, on_delete=models.CASCADE, related_name="users")
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE, related_name="submissions")
     language = models.ForeignKey(Language, on_delete=models.PROTECT)
     submitted_date = models.DateTimeField(auto_now_add=True)
     file = models.FileField(upload_to="submissions/")
