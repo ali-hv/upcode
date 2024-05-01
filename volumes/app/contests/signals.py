@@ -15,5 +15,5 @@ def open_contest_task(sender, instance, created, **kwargs):
     start_time = instance.start_time
     now = timezone.now()
 
-    delay = int((start_time - now).total_seconds())
-    open_contest.apply_async(args=[instance.id], countdown=delay)
+    # delay = int((start_time - now).total_seconds())
+    # open_contest.apply_async(args=[instance.id], countdown=delay)

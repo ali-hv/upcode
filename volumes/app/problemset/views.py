@@ -1,5 +1,6 @@
 from django.db.models import Q
 from django.urls import reverse
+from django.utils import timezone
 from django.views.generic import ListView, DetailView
 from django.shortcuts import redirect, get_object_or_404
 from django.views import View
@@ -10,10 +11,15 @@ from .models import Problem, Tag, Submission, Language
 
 class Problemset(ListView):
     model = Problem
-    queryset = model.objects.filter(Q(contest__is_active=False) | Q(contest=None)).order_by('-created_date')
+    queryset = model.objects.none()
     context_object_name = "problemset"
     template_name = "problemset/problemset.html"
     paginate_by = 15
+
+    def get_queryset(self):
+        now = timezone.now()
+        queryset = Problem.objects.filter(Q(contest__end_time__lte=now) | Q(contest=None)).order_by('-created_date')
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

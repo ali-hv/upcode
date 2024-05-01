@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.utils import timezone
 from django.views.generic import ListView, DetailView
 
 from contests.models import Contest
@@ -12,8 +12,9 @@ class Contests(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["running_contests"] = self.model.objects.filter(is_active=True)
-        context["done_contests"] = self.model.objects.filter(is_active=False)
+        now = timezone.now()
+        context["running_contests"] = self.model.objects.filter(end_time__gte=now)
+        context["done_contests"] = self.model.objects.filter(end_time__lte=now)
         return context
 
 
