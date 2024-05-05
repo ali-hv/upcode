@@ -45,8 +45,13 @@
                                     <td>{{ contest.participants.all|length }}</td>
 
                                     <td style="text-align: center; padding: 6px;">
-                                        <a href="{% url 'contests:contest_problems' contest.pk %}" style="background-color: #ff007b; color: #fff; padding: 4px 8px 4px 8px; border-radius: 5px; font-size: 12px;">مشاهده سوالات</a>
-                                        <br><a href="{% url 'contests:contest_page' contest.pk %}">صفحه رویداد</a>
+                                        {% if request.user in contest.participants.all %}
+                                            <a href="{% url 'contests:contest_problems' contest.pk %}" style="background-color: #ff007b; color: #fff; padding: 4px 8px 4px 8px; border-radius: 5px; font-size: 12px;">مشاهده سوالات</a>
+{#                                          <br><a href="{% url 'contests:contest_page' contest.pk %}">صفحه رویداد</a>#}
+                                        {% else %}
+                                            <a href="{% url 'contests:contest_problems' contest.pk %}" style="background-color: #ff007b; color: #fff; padding: 4px 8px 4px 8px; border-radius: 5px; font-size: 12px;">ثبت نام</a>
+{#                                          <br><a href="{% url 'contests:contest_page' contest.pk %}">صفحه رویداد</a>#}
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -95,7 +100,7 @@
 
                                     <td style="text-align: center; padding: 6px;">
                                         <a href="{% url 'contests:contest_problems' contest.pk %}" style="background-color: #ff007b; color: #fff; padding: 4px 8px 4px 8px; border-radius: 5px; font-size: 12px;">مشاهده سوالات</a>
-                                        <br><a href="{% url 'contests:contest_page' contest.pk %}">صفحه رویداد</a>
+{#                                        <br><a href="{% url 'contests:contest_page' contest.pk %}">صفحه رویداد</a>#}
                                     </td>
                                 </tr>
                             {% endfor %}
