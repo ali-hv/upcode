@@ -1,13 +1,68 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {%  block title %}{{ contest.name }}{% endblock %}
 
 {%  block content %}
-
+    <link rel="stylesheet" href="{% static 'contests/contest_problems.css' %}">
     <div style="text-align: center; margin-top: 100px">
-        {%  for problem in contest.problems.all %}
-            <a href="{% url 'problemset:problem_page' problem.pk %}">{{ problem.title }}</a><br>
-        {% endfor %}
+        <div class="page-container" style="text-align: right">
+            <div class="header-menu">خانه</div>
+                <button class="sidebar-button" onclick="toggleSidebar()">منوء مسابقه</button>
+                <div class="content">
+                    <div class="sidebar">
+                        <div class="problemset">
+                            <button onclick="toggleSublist()">سوالات <i class="bi bi-caret-down-fill" style="font-size: 15px;"></i></button>
+                            <div class="sublist" id="sublist">
+                                {% for problem in contest.problems.all %}
+                                <div>
+                                    <button>{{ problem.title }}</button>
+                                    <button class="points">۱۰۰</button>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div><hr>
+                        <div class="scoreboard"><button>جدول امتیازات</button></div><hr>
+                        <div class="submissions"><button>ارسال ها</button></div>
+                    </div>
+                    <div id="problem" class="tabcontent">
+                        <h2>تحلیل بیمه ۱<i class="bi bi-printer" style="float: left; cursor: pointer;"></i></h2>
+                        <ul>
+                            <li>محدودیت زمان: 1 ثانیه</li>
+                            <li>محدودیت حافظه: 256 مگابایت</li>
+                        </ul>
+                        <hr>
+                        <p></p>
+                        <hr>
+                        <h4>ارسال پاسخ برای این سوال</h4>
+                        <select>
+                            <option>Python</option>
+                            <option>Java</option>
+                            <option>++C</option>
+                        </select>
+                        <br style='content: "";margin: 2em;display: block;font-size: 20%;'>
+                        <div class="file-section">
+                            <label>
+                                <i class="bi bi-paperclip"> فایلی انتخاب نشده است</i>
+                            </label>
+                            <button class="choose-file">انتخاب فایل</button>
+                        </div>
+                        <br>
+                        <button class="submit">ارسال پاسخ</button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function toggleSidebar() {
+                    document.body.classList.toggle('show-sidebar');
+                    document.body.classList.toggle('hide-tabcontent');
+                }
+
+                function toggleSublist() {
+                    document.body.classList.toggle("show-problems");
+                }
+            </script>
     </div>
 
 {% endblock %}
