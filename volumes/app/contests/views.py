@@ -1,4 +1,6 @@
 from django.utils import timezone
+from django.shortcuts import redirect
+from django.views.generic import View
 from django.views.generic import ListView, DetailView
 
 from contests.models import Contest
@@ -28,3 +30,10 @@ class ContestProblems(DetailView):
     model = Contest
     context_object_name = "contest"
     template_name = "contests/contest_problems.html"
+
+
+def register_user_to_contest(request, contest_id):
+    contest = Contest.objects.get(pk=contest_id)
+    contest.participants.add(request.user)
+
+    return redirect('contests:contests')
