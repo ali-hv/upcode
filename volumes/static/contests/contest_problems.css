@@ -1,0 +1,247 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #EEEEEE;
+}
+
+.header-menu {
+    background-color: #F9F9F9;
+    color: #5492CD;
+    padding: 10px 21px;
+    border-block: 0.01em solid #d8d8d8;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+}
+
+.sidebar {
+    background-color: #fff;
+    width: 20%;
+    height: 100vh;
+    flex-direction: column;
+    align-items: right;
+    justify-content: right;
+    display: flex;
+    position: fixed;
+    right: 0;
+}
+
+.sidebar div,button {
+    cursor: pointer;
+}
+
+.scoreboard:hover,
+.submissions:hover {
+    background-color: #e9e9e9;
+}
+
+.sidebar .problemset:hover {
+    background-color: #fff;
+}
+
+.sidebar button {
+    border: none;
+    color: #000;
+    text-align: right;
+    background: none;
+    font-size: 20px;
+    margin: 10px;
+    margin-right: 18px;
+}
+
+.sublist {
+    display: block;
+    width: 100%;
+    padding: 0px 30px 20px 30px;
+}
+
+.sublist div {
+    /* TODO fix points to be in the left side */
+    display: inline-block;
+}
+
+.sublist div:hover {
+    background-color: #e9e9e9;
+    border-radius: 7px;
+}
+
+.sublist button {
+    color: #696969;
+    font-size: 19px;
+}
+
+.sublist .points {
+    color: rgb(0, 149, 255);
+    border-radius: 5px;
+    padding-inline: 15px;
+    border: 1px solid rgb(0, 149, 255);
+    background: none;
+    float: left;
+}
+
+.show-problems .sublist {
+    display: none;
+}
+
+.sidebar hr, .tabcontent hr {
+    width: 100%;
+    border: 0.01em solid #d8d8d8;
+    opacity: 40%;
+}
+
+.sidebar-button {
+    display: none;
+    position: fixed;
+    top: 69px;
+    width: 100%;
+    font-size: 20px;
+    background-color: #EE13DF;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.tabcontent {
+    margin-block: 40px;
+    width: 60%;
+    height: fit-content;
+    padding: 30px;
+    margin-right: 580px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #4d535d;
+}
+
+.tabcontent h2,h4 {
+    text-align: center;
+}
+
+.tabcontent p {
+    line-height: 35px;
+    font-size: 14px;
+}
+
+.tabcontent ul {
+    line-height: 32px;
+    font-size: 14px;
+}
+
+.tabcontent hr {
+    border: 0.01em solid #d8d8d8;
+}
+
+.tabcontent select {
+    width: 50%;
+    background-color: #fff;
+    border: 1px solid #d8d8d8;
+    padding: 10px;
+    border-radius: 6px;
+    color: #4c4c4c;
+    cursor: pointer;
+}
+
+.tabcontent label {
+    border: 1px solid #d8d8d8;
+    padding: 6px;
+    padding-left: 14%;
+    padding-right: 10px;
+    font-size: 13px;
+    border-radius: 6px;
+}
+
+.tabcontent .file-section {
+    width: 66%;
+}
+
+.tabcontent .file-section label {
+    width: 70%;
+}
+
+.tabcontent .choose-file {
+    border: 1px solid #ee13df;
+    color: #ee13df;
+    background: none;
+    border-radius: 6px;
+    padding: 6px;
+    margin-right: 6px;
+    width: 30%;
+    cursor: pointer;
+}
+
+.tabcontent .choose-file:hover {
+    background-color: #fcecfb;
+}
+
+.tabcontent .submit {
+    opacity: 40%;
+    cursor: not-allowed;
+    background-color: #ee13df;
+    color: #fff;
+    padding: 6px;
+    border: none;
+    border-radius: 6px;
+    width: 110px;
+    font-size: 15px;
+}
+
+.tabcontent .score {
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #48BB78;
+    color: #fff;
+    border: none;
+    width: 50%;
+    font-size: 11px;
+}
+
+.tabcontent .action-buttons {
+    border: 1px solid #afafaf;
+    background: none;
+    border-radius: 5px;
+    padding: 4px 8px 0px 8px;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.tabcontent .action-buttons:hover {
+    background-color: #eaeaea;
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 20px;
+    }
+
+    .header-menu {
+        margin-top: 16px;
+    }
+
+    .sidebar {
+        display: none;
+        top: 122px;
+    }
+
+    .sidebar-button {
+        display: block;
+    }
+
+    .tabcontent {
+        width: 100%;
+        margin-right: 0%;
+    }
+
+    .show-sidebar .sidebar {
+        display: flex;
+        width: 100%;
+    }
+
+    .hide-tabcontent .tabcontent {
+        display: none;
+    }
+}
