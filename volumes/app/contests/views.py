@@ -1,6 +1,6 @@
 from django.utils import timezone
 from django.shortcuts import redirect
-from django.views.generic import View
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 
 from contests.models import Contest
@@ -30,6 +30,17 @@ class ContestProblems(DetailView):
     model = Contest
     context_object_name = "contest"
     template_name = "contests/contest_problems.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        problem_id = self.kwargs.get('problem_id')
+        if problem_id:
+            context['problem'] = get_object_or_404(self.object.problems, id=problem_id)
+        else:
+            context['problem'] = self.object.problems.first()
+
+        return context
 
 
 def register_user_to_contest(request, contest_id):

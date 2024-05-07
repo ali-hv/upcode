@@ -73,6 +73,11 @@
     font-size: 19px;
 }
 
+.sublist a {
+    text-decoration: none !important;
+    color: #696969;
+}
+
 .sublist .points {
     color: rgb(0, 149, 255);
     border-radius: 5px;

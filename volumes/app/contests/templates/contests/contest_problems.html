@@ -15,10 +15,14 @@
                             <button onclick="toggleSublist()">سوالات <i class="bi bi-caret-down-fill" style="font-size: 15px;"></i></button>
                             <div class="sublist" id="sublist">
                                 {% for problem in contest.problems.all %}
-                                <div>
-                                    <button>{{ problem.title }}</button>
-                                    <button class="points">۱۰۰</button>
-                                </div>
+                                    <div>
+                                        <button>
+                                            <a href="{% url 'contests:contest_problem_with_id' contest.pk problem.pk %}">
+                                                {{ problem.title }}
+                                            </a>
+                                        </button>
+                                        <button class="points">۱۰۰</button>
+                                    </div>
                                 {% endfor %}
                             </div>
                         </div><hr>
@@ -26,19 +30,19 @@
                         <div class="submissions"><button>ارسال ها</button></div>
                     </div>
                     <div id="problem" class="tabcontent">
-                        <h2>تحلیل بیمه ۱<i class="bi bi-printer" style="float: left; cursor: pointer;"></i></h2>
+                        <h2>{{ problem.title }}<i class="bi bi-printer" style="float: left; cursor: pointer;"></i></h2>
                         <ul>
-                            <li>محدودیت زمان: 1 ثانیه</li>
-                            <li>محدودیت حافظه: 256 مگابایت</li>
+                            <li>محدودیت زمان: {{ problem.time_limit }} ثانیه</li>
+                            <li>محدودیت حافظه: {{ problem.memory_limit }} مگابایت</li>
                         </ul>
                         <hr>
-                        <p></p>
+                        <p>{{ problem.detail }}</p>
                         <hr>
-                        <h4>ارسال پاسخ برای این سوال</h4>
-                        <select>
-                            <option>Python</option>
-                            <option>Java</option>
-                            <option>++C</option>
+                        <h6>ارسال پاسخ برای این سوال</h6><br>
+                        <select id="languageSelect">
+                            {%  for language in problem.languages.all %}
+                                <option>{{ language }}</option>
+                            {% endfor %}
                         </select>
                         <br style='content: "";margin: 2em;display: block;font-size: 20%;'>
                         <div class="file-section">
