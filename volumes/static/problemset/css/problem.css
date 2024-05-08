@@ -13,7 +13,7 @@
 
 .tabcontent {
     margin-top: 20px;
-    padding: 20px;
+    padding: 30px;
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -26,7 +26,8 @@
 
 .tabcontent p {
     line-height: 35px;
-    font-size: 14px;
+    font-size: 21px;
+    padding: 10px;
 }
 
 .tabcontent ul {
@@ -162,7 +163,7 @@ progress::-webkit-progress-bar {
     background-color: white;
     z-index: 1002;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    overflow: auto;"
+    overflow: auto;
 }
 
 .close-judge-result, .close-source-code {

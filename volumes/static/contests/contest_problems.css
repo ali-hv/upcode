@@ -129,7 +129,8 @@
 
 .tabcontent p {
     line-height: 35px;
-    font-size: 14px;
+    font-size: 21px;
+    padding: 10px;
 }
 
 .tabcontent ul {
