@@ -43,6 +43,11 @@ class ContestProblems(DetailView):
         return context
 
 
+class ContestScoreboard(DetailView):
+    model = Contest
+    template_name = "contests/contest_scoreboard.html"
+
+
 def register_user_to_contest(request, contest_id):
     contest = Contest.objects.get(pk=contest_id)
     contest.participants.add(request.user)

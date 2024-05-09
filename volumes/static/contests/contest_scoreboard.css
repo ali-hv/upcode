@@ -21,6 +21,7 @@
     background-color: #fff;
     width: 20%;
     height: 100vh;
+    margin-top: 46px;
     flex-direction: column;
     align-items: right;
     justify-content: right;
@@ -33,7 +34,10 @@
     cursor: pointer;
 }
 
-.scoreboard:hover,
+.scoreboard {
+    background-color: #e9e9e9;
+}
+
 .submissions:hover {
     background-color: #e9e9e9;
 }
@@ -53,7 +57,7 @@
 }
 
 .sublist {
-    display: block;
+    display: none;
     width: 100%;
     padding: 0px 30px 20px 30px;
 }
@@ -73,14 +77,9 @@
     font-size: 19px;
 }
 
-.sublist a,
-.scoreboard a {
+.sublist a {
     text-decoration: none !important;
     color: #696969;
-}
-
-.scoreboard a {
-    color: #000000
 }
 
 .sublist .points {
@@ -93,7 +92,7 @@
 }
 
 .show-problems .sublist {
-    display: none;
+    display: block;
 }
 
 .sidebar hr, .tabcontent hr {
@@ -118,110 +117,50 @@
 
 .tabcontent {
     margin-block: 40px;
-    width: 60%;
+    width: 75%;
     height: fit-content;
     padding: 30px;
-    margin-right: 580px;
-    background-color: #fff;
+    margin-right: 430px;
     border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     color: #4d535d;
-}
-
-.tabcontent h2,h4 {
-    text-align: center;
-}
-
-.tabcontent p {
-    line-height: 35px;
-    font-size: 21px;
-    padding: 10px;
-}
-
-.tabcontent ul {
-    line-height: 32px;
-    font-size: 14px;
-}
-
-.tabcontent hr {
-    border: 0.01em solid #d8d8d8;
-}
-
-.tabcontent select {
-    width: 50%;
     background-color: #fff;
-    border: 1px solid #d8d8d8;
-    padding: 10px;
-    border-radius: 6px;
-    color: #4c4c4c;
-    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.tabcontent label {
-    border: 1px solid #d8d8d8;
-    padding: 6px;
-    padding-left: 14%;
-    padding-right: 10px;
-    font-size: 13px;
-    border-radius: 6px;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.tabcontent .file-section {
-    width: 66%;
+tbody {
+    background-color: #ffffff;
 }
 
-.tabcontent .file-section label {
-    width: 70%;
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
 }
 
-.tabcontent .choose-file {
-    border: 1px solid #ee13df;
-    color: #ee13df;
-    background: none;
-    border-radius: 6px;
-    padding: 6px;
-    margin-right: 6px;
-    width: 30%;
-    cursor: pointer;
+th {
+    text-align: center;
+    background-color: #ffffff;
 }
 
-.tabcontent .choose-file:hover {
-    background-color: #fcecfb;
+tr:hover {
+    background-color: #f5f5f5;
 }
 
-.tabcontent .submit {
-    opacity: 40%;
-    cursor: not-allowed;
-    background-color: #ee13df;
-    color: #fff;
-    padding: 6px;
-    border: none;
-    border-radius: 6px;
-    width: 110px;
-    font-size: 15px;
+.sub-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.tabcontent .score {
-    border-radius: 5px;
-    padding: 5px;
-    background-color: #48BB78;
-    color: #fff;
-    border: none;
-    width: 50%;
-    font-size: 11px;
-}
-
-.tabcontent .action-buttons {
-    border: 1px solid #afafaf;
-    background: none;
-    border-radius: 5px;
-    padding: 4px 8px 0px 8px;
-    font-size: 19px;
-    cursor: pointer;
-}
-
-.tabcontent .action-buttons:hover {
-    background-color: #eaeaea;
+.sub-table td {
+    padding: 8px 15px;
+    border-bottom: none;
 }
 
 @media (max-width: 768px) {
@@ -247,6 +186,10 @@
         margin-right: 0%;
     }
 
+    th, td {
+        padding: 8px 10px;
+    }
+
     .show-sidebar .sidebar {
         display: flex;
         width: 100%;
@@ -255,4 +198,5 @@
     .hide-tabcontent .tabcontent {
         display: none;
     }
+
 }

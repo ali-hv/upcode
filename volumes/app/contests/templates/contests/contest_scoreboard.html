@@ -1,0 +1,85 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{%  block title %}{{ contest.name }}{% endblock %}
+
+{%  block content %}
+    <link rel="stylesheet" href="{% static 'contests/contest_scoreboard.css' %}">
+    <div style="text-align: center; margin-top: 100px">
+        <div class="page-container" style="text-align: right">
+            <div class="header-menu">خانه</div>
+            <button class="sidebar-button" onclick="toggleSidebar()">منوء مسابقه</button>
+            <div class="sidebar">
+                <div class="problemset">
+                        <button onclick="toggleSublist()">سوالات <i class="bi bi-caret-down-fill" style="font-size: 15px;"></i></button>
+                        <div class="sublist" id="sublist">
+                            {% for problem in contest.problems.all %}
+                                <div>
+                                    <button>
+                                        <a href="{% url 'contests:contest_problem_with_id' contest.pk problem.pk %}">
+                                            {{ problem.title }}
+                                        </a>
+                                    </button>
+                                    <button class="points">۱۰۰</button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div><hr>
+                <div class="scoreboard"><button>جدول امتیازات</button></div><hr>
+                <div class="submissions"><a href="submissions.html"><button>ارسال ها</button></a></div>
+            </div>
+            <div id="problem" class="tabcontent">
+                <table>
+                    <thead style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); ">
+                      <tr>
+                        <th rowspan="2">رتبه</th>
+                        <th rowspan="2">نام</th>
+                        <th colspan="5">سؤالات</th>
+                        <th rowspan="2">جریمه زمانی</th>
+                        <th rowspan="2">نمره</th>
+                      </tr>
+                      <tr style="color: #1E70BF;">
+                        {% for problem in contest.problems.all %}
+                            <th>
+                                <a href="{% url 'contests:contest_problem_with_id' contest.pk problem.pk %}">
+                                    {{ problem.title }}
+                                </a>
+                            </th>
+                        {% endfor %}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td colspan="5">
+                          <table class="sub-table">
+                            <tr>
+                              <td style="background-color: #C1EEBE;">10</td>
+                              <td>15</td>
+                              <td>20</td>
+                              <td>25</td>
+                              <td>...</td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td>5 minutes</td>
+                        <td>90</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+                function toggleSidebar() {
+                    document.body.classList.toggle('show-sidebar');
+                    document.body.classList.toggle('hide-tabcontent');
+                }
+
+                function toggleSublist() {
+                    document.body.classList.toggle("show-problems");
+                }
+            </script>
+{% endblock %}
