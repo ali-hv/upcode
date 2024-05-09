@@ -98,7 +98,7 @@ class Submission(models.Model):
         ("partial", "Partial"),
     )
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="problems")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="submissions")
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE, related_name="submissions")
     language = models.ForeignKey(Language, on_delete=models.PROTECT)
     submitted_date = models.DateTimeField(auto_now_add=True)
