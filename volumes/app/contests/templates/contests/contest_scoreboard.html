@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load problemset_extras %}
 
 {%  block title %}{{ contest.name }}{% endblock %}
 
@@ -49,23 +50,23 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td colspan="5">
-                          <table class="sub-table">
-                            <tr>
-                              <td style="background-color: #C1EEBE;">10</td>
-                              <td>15</td>
-                              <td>20</td>
-                              <td>25</td>
-                              <td>...</td>
-                            </tr>
-                          </table>
-                        </td>
-                        <td>5 minutes</td>
-                        <td>90</td>
-                      </tr>
+                      {% for user in contest.participants.all %}
+                          <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ user.name }}</td>
+                            <td colspan="5">
+                              <table class="sub-table">
+                                <tr>
+                                  {% for problem in contest.problems.all %}
+                                      <td style="background-color: #C1EEBE;">{{ problem|get_submission_score:user }}</td>
+                                  {% endfor %}
+                                </tr>
+                              </table>
+                            </td>
+                            <td>5 minutes</td>
+                            <td>90</td>
+                          </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
             </div>

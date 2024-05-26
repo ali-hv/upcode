@@ -52,13 +52,18 @@
                     <br style='content: "";margin: 2em;display: block;font-size: 20%;'>
                     <div class="file-section">
                         <label>
-                            <i class="bi bi-paperclip"> فایلی انتخاب نشده است</i>
+                            <i class="bi bi-paperclip" id="filename-label"> فایلی انتخاب نشده است</i>
                         </label>
-                        <button class="choose-file">انتخاب فایل</button>
+                        <form action="{% url 'problemset:create_submission' %}" onsubmit="getLanguage()" method="post" enctype="multipart/form-data" style="display: inline">
+                            {% csrf_token %}
+                            <label class="choose-file" for="choosefile" style="width: 25%; text-align: center">انتخاب فایل</label>
+                            <input id="choosefile" type="file" name="submission-file" style="display: none">
+                            <input type="hidden" value="{{ problem.pk }}" name="problem">
+                            <input type="hidden" id="languageName" value="" name="language">
+                            <br><br>
+                            <button class="submit" id="submit">ارسال پاسخ</button>
+                        </form>
                     </div>
-                    <br>
-                    <button class="submit">ارسال پاسخ</button>
-                </div>
             </div>
         </div>
     </div>
@@ -72,6 +77,7 @@
                 function toggleSublist() {
                     document.body.classList.toggle("show-problems");
                 }
-            </script>
+    </script>
+    <script src="{% static 'problemset/js/problem.js' %}"></script>
 
 {% endblock %}
